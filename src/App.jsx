@@ -67,9 +67,9 @@ function Shell() {
       <div style={{ display:'flex', minHeight:'100vh', background:'var(--bg)' }}>
         <aside style={{ width:240, flexShrink:0, background:'var(--card)', borderRight:'1px solid var(--border)', position:'fixed', top:0, bottom:0, left:0, display:'flex', flexDirection:'column', zIndex:200 }}>
           <div style={{ padding:'22px 20px', borderBottom:'1px solid var(--border)' }}>
-            <div onClick={() => navigate('/')} style={{ cursor:'pointer', display:'flex', alignItems:'center', gap:10 }}>
+            <div onClick={() => navigate('/')} style={{ cursor:'pointer', display:'flex', alignItems:'center', gap:5 }}>
               <span style={{ fontFamily:"'Syne',sans-serif", fontWeight:800, fontSize:22 }}>Campus<span style={{ color:'var(--key)' }}>Keys</span></span>
-              <span style={{ fontSize:20 }}>🔑</span>
+              <span style={{ fontSize:16}}>🔑</span>
             </div>
           </div>
           <nav style={{ flex:1, padding:'16px 12px', display:'flex', flexDirection:'column', gap:4 }}>
