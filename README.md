@@ -2,25 +2,7 @@
 
 A college item borrowing & lending platform built with React + Supabase.
 
-## Setup
-
-1. Clone and install:
-```bash
-npm install
-```
-
-2. Copy `.env.example` to `.env` and fill in your Supabase credentials.
-
-3. Run **both** SQL migrations in Supabase SQL Editor:
-   - `supabase/migrations/001_schema.sql` — Core tables
-   - `supabase/migrations/002_new_features.sql` — Item Requests + Admin Messages
-
-4. Start dev server:
-```bash
-npm run dev
-```
-
-## Features
+.## Features
 
 - 🏠 **Browse** — Search & filter items; owner can't book own items
 - 💬 **Home Chat** — Inline chat on browse page with real-time notifications
