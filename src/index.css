@@ -1,0 +1,267 @@
+/* ── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────────────────── */
+:root {
+  --bg:      #07080c;
+  --bg2:     #0e1018;
+  --surface: #131621;
+  --card:    #181c28;
+  --card2:   #1e2235;
+  --border:  #252a3d;
+  --border2: #2f3550;
+  --key:     #f0c040;
+  --green:   #34d399;
+  --blue:    #60a5fa;
+  --red:     #f87171;
+  --purple:  #a78bfa;
+  --text:    #eef0f6;
+  --muted:   #5a6380;
+  --sub:     #8892aa;
+  --r:       14px;
+  --r2:      20px;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+/* ── App Shell ────────────────────────────────────────────────────────────── */
+.app-shell {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg);
+  position: relative;
+}
+
+/* ── Desktop mode removes max-width constraint ─────────────────────────── */
+.desktop-shell {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(18px) } to { opacity:1; transform:translateY(0) } }
+@keyframes fadeIn   { from { opacity:0 } to { opacity:1 } }
+@keyframes slideUp  { from { transform:translateY(100%) } to { transform:translateY(0) } }
+@keyframes pulse    { 0%,100% { opacity:1 } 50% { opacity:.45 } }
+@keyframes spin     { to { transform:rotate(360deg) } }
+@keyframes ping     { 0% { transform:scale(1);opacity:1 } 75%,100% { transform:scale(2);opacity:0 } }
+@keyframes shimmer  { 0% { background-position:-400px 0 } 100% { background-position:400px 0 } }
+@keyframes waveAnim { 0%,100% { transform:scaleY(.35) } 50% { transform:scaleY(1) } }
+
+.fade-up   { animation: fadeUp .35s ease forwards; }
+.fade-up-2 { animation: fadeUp .35s .08s ease forwards; opacity:0; }
+.fade-up-3 { animation: fadeUp .35s .16s ease forwards; opacity:0; }
+.fade-in   { animation: fadeIn .25s ease forwards; }
+
+/* ── Skeleton ─────────────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 10px;
+}
+
+/* ── Sheet / Modal ────────────────────────────────────────────────────────── */
+.sheet-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(10px);
+  z-index: 500;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.sheet {
+  background: var(--bg2);
+  border-radius: 26px 26px 0 0;
+  border: 1px solid var(--border2);
+  width: 100%; max-width: 430px;
+  max-height: 92vh;
+  overflow-y: auto;
+  animation: slideUp .28s cubic-bezier(.32,.72,0,1);
+  padding: 0 20px 48px;
+}
+.sheet-handle {
+  width: 40px; height: 4px;
+  background: var(--border2);
+  border-radius: 100px;
+  margin: 14px auto 18px;
+}
+
+/* ── Forms ────────────────────────────────────────────────────────────────── */
+.f-label {
+  display: block;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: var(--sub); margin-bottom: 7px;
+}
+.f-input, .f-select, .f-textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1.5px solid var(--border2);
+  border-radius: 12px;
+  padding: 13px 15px;
+  color: var(--text);
+  font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif;
+  outline: none;
+  transition: border-color .2s, background .2s;
+  appearance: none;
+}
+.f-input:focus, .f-select:focus, .f-textarea:focus {
+  border-color: var(--key);
+  background: var(--card2);
+}
+.f-input::placeholder, .f-textarea::placeholder { color: var(--muted); }
+.f-textarea { resize: vertical; line-height: 1.6; }
+.f-group { margin-bottom: 14px; }
+.f-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700; font-size: 14px; letter-spacing: .01em;
+  border: none; border-radius: 11px; cursor: pointer;
+  transition: opacity .15s, transform .15s;
+  padding: 11px 18px;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary  { background: var(--key);     color: #07080c; width: 100%; padding: 15px; font-size: 15px; font-weight: 800; border-radius: 13px; }
+.btn-primary:hover  { opacity: .88; }
+.btn-primary:disabled { opacity: .42; cursor: not-allowed; }
+.btn-green    { background: rgba(52,211,153,.15);  color: var(--green); border: 1px solid rgba(52,211,153,.3); }
+.btn-red      { background: rgba(248,113,113,.12); color: var(--red);   border: 1px solid rgba(248,113,113,.25); }
+.btn-outline  { background: var(--card);   color: var(--text);  border: 1.5px solid var(--border2); }
+.btn-sm       { font-size: 12px; padding: 8px 14px; border-radius: 9px; }
+
+/* ── Cards ────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  transition: transform .2s, border-color .2s, background .2s;
+}
+.card:hover    { transform: translateY(-2px); border-color: rgba(240,192,64,.25); }
+.card-flat     { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); }
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; font-weight: 700; padding: 4px 10px;
+  border-radius: 100px; letter-spacing: .03em;
+}
+.badge-key    { background: rgba(240,192,64,.1);  color: var(--key);    border: 1px solid rgba(240,192,64,.25); }
+.badge-green  { background: rgba(52,211,153,.1);  color: var(--green);  border: 1px solid rgba(52,211,153,.25); }
+.badge-red    { background: rgba(248,113,113,.1); color: var(--red);    border: 1px solid rgba(248,113,113,.25); }
+.badge-blue   { background: rgba(96,165,250,.1);  color: var(--blue);   border: 1px solid rgba(96,165,250,.25); }
+.badge-purple { background: rgba(167,139,250,.1); color: var(--purple); border: 1px solid rgba(167,139,250,.25); }
+.badge-muted  { background: var(--surface); color: var(--sub); border: 1px solid var(--border); }
+
+/* ── Spinner ──────────────────────────────────────────────────────────────── */
+.spinner {
+  width: 22px; height: 22px;
+  border: 2.5px solid var(--border2);
+  border-top-color: var(--key);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+}
+
+/* ── Stars ────────────────────────────────────────────────────────────────── */
+.star-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 28px; transition: transform .15s;
+  padding: 2px 3px; line-height: 1;
+}
+.star-btn:hover { transform: scale(1.3); }
+
+/* ── Voice wave ───────────────────────────────────────────────────────────── */
+.wave-bar {
+  width: 3px; border-radius: 3px;
+  background: currentColor; opacity: .7;
+  animation: waveAnim .8s ease infinite;
+}
+
+/* ── Section title ────────────────────────────────────────────────────────── */
+.sec-title {
+  font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--muted); margin-bottom: 12px;
+}
+
+/* ── Divider ──────────────────────────────────────────────────────────────── */
+.divider {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--muted); font-size: 13px;
+  margin: 18px 0;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* ── Warn / Info boxes ────────────────────────────────────────────────────── */
+.box-warn {
+  background: rgba(248,113,113,.07);
+  border: 1px solid rgba(248,113,113,.22);
+  border-radius: 12px; padding: 13px 15px;
+  font-size: 13px; color: var(--red);
+  display: flex; gap: 9px; align-items: flex-start; line-height: 1.55;
+}
+.box-success {
+  background: rgba(52,211,153,.07);
+  border: 1px solid rgba(52,211,153,.22);
+  border-radius: 12px; padding: 13px 15px;
+  font-size: 13px; color: var(--green);
+  display: flex; gap: 9px; align-items: flex-start; line-height: 1.55;
+}
+.box-info {
+  background: rgba(96,165,250,.07);
+  border: 1px solid rgba(96,165,250,.22);
+  border-radius: 12px; padding: 13px 15px;
+  font-size: 13px; color: var(--blue);
+  display: flex; gap: 9px; align-items: flex-start; line-height: 1.55;
+}
+
+/* ── Upload zone ──────────────────────────────────────────────────────────── */
+.upload-zone {
+  background: var(--card); border: 2px dashed var(--border2);
+  border-radius: 14px; padding: 32px 20px;
+  text-align: center; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.upload-zone:hover { border-color: var(--key); background: rgba(240,192,64,.03); }
+
+/* ── Avatar ───────────────────────────────────────────────────────────────── */
+.avatar {
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--key), var(--green));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: #07080c; flex-shrink: 0;
+  font-family: 'Syne', sans-serif;
+}
+
+/* ── Page padding ─────────────────────────────────────────────────────────── */
+.page { padding: 18px 18px 96px; }
+
+/* ── Rating summary bar ───────────────────────────────────────────────────── */
+.rating-bar-track {
+  flex: 1; height: 6px;
+  background: var(--surface); border-radius: 4px; overflow: hidden;
+}
+.rating-bar-fill {
+  height: 100%; background: var(--key); border-radius: 4px;
+  transition: width .5s ease;
+}
